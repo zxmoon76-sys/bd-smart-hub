@@ -1,1 +1,1134 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BD Smart Hub Pro - Earn & Play</title>
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4843952439844383" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg: #0a0e17;
+            --card-bg: #131a2b;
+            --surface: #1a2340;
+            --text: #e8edf5;
+            --subtext: #8895b3;
+            --border: #243050;
+            --primary: #4f8fff;
+            --primary-glow: #4f8fff55;
+            --gold: #f5b042;
+            --gold-bg: #f5b04222;
+            --green: #2ecc71;
+            --green-bg: #2ecc7122;
+            --red: #e74c3c;
+            --red-bg: #e74c3c22;
+            --purple: #a855f7;
+            --purple-bg: #a855f722;
+            --ad-bg: #1e2a45;
+            --ad-border: #f5b042;
+            --radius: 14px;
+            --radius-sm: 10px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --nav-height: 65px;
+            --header-height: 55px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans Bengali', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: calc(var(--nav-height) + 20px);
+            transition: background var(--transition), color var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 10px;
+        }
 
+        /* HEADER */
+        .top-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--surface);
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            min-height: var(--header-height);
+        }
+        .brand {
+            font-weight: 700;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #4f8fff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .coin-badge {
+            background: var(--gold-bg);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            border: 1px solid var(--gold);
+        }
+        .icon-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* MAIN */
+        .main-container {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 14px 12px;
+            animation: fadeInUp 0.3s ease;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        /* AD CONTAINERS */
+        .ad-container {
+            background: var(--ad-bg);
+            border: 2px dashed var(--ad-border);
+            border-radius: var(--radius);
+            padding: 16px;
+            text-align: center;
+            margin: 14px 0;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 12px;
+            transition: all var(--transition);
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .ad-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #000000aa;
+            color: #fff;
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .feat-card {
+            background: var(--surface);
+            padding: 16px 10px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all var(--transition);
+            position: relative;
+        }
+        .feat-card:active {
+            transform: scale(0.94);
+            background: var(--border);
+        }
+        .feat-card .icon {
+            font-size: 28px;
+            margin-bottom: 4px;
+        }
+        .feat-card .title {
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .reward-tag {
+            background: var(--gold-bg);
+            color: var(--gold);
+            padding: 3px 9px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 11px 18px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all var(--transition);
+            width: 100%;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: #000;
+            font-weight: 700;
+        }
+        .btn-danger {
+            background: var(--red);
+            color: #fff;
+        }
+        .btn:active {
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+        .btn-sm {
+            padding: 7px 14px;
+            font-size: 11px;
+            width: auto;
+            border-radius: 20px;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        /* INPUT */
+        .input {
+            width: 100%;
+            padding: 10px 13px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 13px;
+            outline: none;
+            margin-bottom: 8px;
+        }
+        .input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+        select.input {
+            appearance: auto;
+        }
+
+        /* QUIZ / SURVEY */
+        .quiz-option {
+            background: var(--surface);
+            padding: 12px;
+            border-radius: 10px;
+            margin: 6px 0;
+            cursor: pointer;
+            border: 2px solid var(--border);
+            transition: all var(--transition);
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .quiz-option:active {
+            border-color: var(--primary);
+            background: var(--primary-glow);
+        }
+        .quiz-option.correct {
+            border-color: var(--green);
+            background: var(--green-bg);
+        }
+        .quiz-option.wrong {
+            border-color: var(--red);
+            background: var(--red-bg);
+        }
+
+        /* MINI GAME */
+        .game-area {
+            background: #000;
+            border-radius: var(--radius-sm);
+            position: relative;
+            overflow: hidden;
+            margin: 8px 0;
+            border: 2px solid var(--border);
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: var(--nav-height);
+            z-index: 200;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            max-width: 520px;
+            margin: 0 auto;
+            border-radius: 18px 18px 0 0;
+            overflow-x: auto;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            cursor: pointer;
+            padding: 5px 8px;
+            border-radius: 10px;
+            color: var(--subtext);
+            font-size: 8px;
+            font-weight: 600;
+            transition: all var(--transition);
+            white-space: nowrap;
+            min-width: 48px;
+        }
+        .nav-item.active {
+            color: var(--primary);
+        }
+        .nav-item .nav-icon {
+            font-size: 18px;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 12px;
+            z-index: 999;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            animation: slideDown 0.4s ease, fadeOut 0.4s ease 2s forwards;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        @keyframes slideDown {
+            from {
+                top: -60px;
+                opacity: 0;
+            }
+            to {
+                top: 20px;
+                opacity: 1;
+            }
+        }
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                top: -30px;
+            }
+        }
+        .toast.success {
+            background: #16a34a;
+        }
+        .toast.error {
+            background: #dc2626;
+        }
+
+        /* AUTH */
+        .auth-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px 18px;
+            border: 1px solid var(--border);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .auth-link {
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: underline;
+            margin-top: 8px;
+            display: inline-block;
+        }
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin: 8px 0;
+        }
+        .stat-box {
+            background: var(--surface);
+            padding: 12px 8px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .stat-box .val {
+            font-weight: 700;
+            font-size: 17px;
+        }
+        .stat-box .lbl {
+            font-size: 9px;
+            color: var(--subtext);
+            text-transform: uppercase;
+        }
+        .avatar-circle {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: var(--primary);
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="toast-container"></div>
+
+    <!-- HEADER -->
+    <header class="top-header" id="top-header">
+        <div class="brand">✨ BD Smart Hub Pro</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+            <div class="coin-badge" onclick="navigateTo('withdraw')">🪙 <span id="global-coins">0</span></div>
+            <button class="icon-btn" onclick="navigateTo('profile')">👤</button>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <div class="main-container" id="main-container">
+
+        <!-- LOGIN -->
+        <div class="screen" id="screen-login">
+            <div class="auth-card" style="margin-top:20px;">
+                <h2>🔐 লগইন</h2>
+                <p style="color:var(--subtext);font-size:12px;">আপনার অ্যাকাউন্টে প্রবেশ করুন</p>
+                <input class="input" id="login-email" placeholder="ইমেইল" type="email">
+                <input class="input" id="login-pass" placeholder="পাসওয়ার্ড" type="password">
+                <button class="btn btn-primary" onclick="handleLogin()">লগইন</button>
+                <span class="auth-link" onclick="showScreen('screen-register')">নতুন অ্যাকাউন্ট →</span>
+                <p style="font-size:10px;color:var(--subtext);margin-top:8px;">ডেমো: demo@test.com / 1234</p>
+            </div>
+        </div>
+
+        <!-- REGISTER -->
+        <div class="screen" id="screen-register">
+            <div class="auth-card" style="margin-top:20px;">
+                <h2>📝 রেজিস্টার</h2>
+                <input class="input" id="reg-name" placeholder="নাম">
+                <input class="input" id="reg-email" placeholder="ইমেইল" type="email">
+                <input class="input" id="reg-pass" placeholder="পাসওয়ার্ড (৪+ ক্যারেক্টার)" type="password">
+                <button class="btn btn-primary" onclick="handleRegister()">রেজিস্টার</button>
+                <span class="auth-link" onclick="showScreen('screen-login')">← ইতিমধ্যে অ্যাকাউন্ট আছে?</span>
+            </div>
+        </div>
+
+        <!-- HOME -->
+        <div class="screen" id="screen-home">
+            <div class="card" style="background:linear-gradient(135deg,#1a2a50,#1a1a40);">
+                <h3>👋 স্বাগতম, <span id="uname">User</span>!</h3>
+                <p style="color:var(--subtext);font-size:11px;">আজকের টার্গেট সম্পন্ন করুন 🎯</p>
+            </div>
+            <div class="stat-row">
+                <div class="stat-box"><div class="val" id="s-coins">0</div><div class="lbl">পয়েন্ট</div></div>
+                <div class="stat-box"><div class="val" id="s-tasks">0</div><div class="lbl">টাস্ক</div></div>
+                <div class="stat-box"><div class="val" id="s-streak">0🔥</div><div class="lbl">স্ট্রিক</div></div>
+            </div>
+
+            <!-- Google AdSense Display Ad Unit -->
+            <div class="ad-container">
+                <span class="ad-badge">📢 Google AdSense</span>
+                <ins class="adsbygoogle"
+                     style="display:block; width:100%; height:120px;"
+                     data-ad-client="ca-pub-4843952439844383"
+                     data-ad-slot="5545377239"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <div class="section-title">⚡ কুইক অ্যাকশন</div>
+            <div class="grid-2">
+                <div class="feat-card" onclick="handleDailyBonus()"><div class="icon">🎁</div><div class="title">ডেইলি বোনাস</div><span class="reward-tag">+৫০</span></div>
+                <div class="feat-card" onclick="navigateTo('tasks')"><div class="icon">✅</div><div class="title">টাস্ক</div></div>
+                <div class="feat-card" onclick="navigateTo('survey')"><div class="icon">📋</div><div class="title">সার্ভে</div><span class="reward-tag">+২৫</span></div>
+                <div class="feat-card" onclick="navigateTo('quiz')"><div class="icon">🧠</div><div class="title">কুইজ</div><span class="reward-tag">+২০</span></div>
+                <div class="feat-card" onclick="navigateTo('math')"><div class="icon">🔢</div><div class="title">ম্যাথ সলভ</div></div>
+                <div class="feat-card" onclick="navigateTo('game')"><div class="icon">🎮</div><div class="title">মিনি গেম</div><span class="reward-tag">+৩০</span></div>
+                <div class="feat-card" onclick="navigateTo('tools')"><div class="icon">🧰</div><div class="title">টুলস</div></div>
+                <div class="feat-card" onclick="navigateTo('withdraw')"><div class="icon">💳</div><div class="title">উইথড্র</div></div>
+            </div>
+        </div>
+
+        <!-- TASKS -->
+        <div class="screen" id="screen-tasks">
+            <div class="section-title">📋 টাস্ক সম্পন্ন করুন</div>
+            <div class="card" onclick="completeTask('app_review')" style="cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div><b>📱 অ্যাপ রিভিউ</b><br><small style="color:var(--subtext);">গুগল প্লে স্টোরে রিভিউ দিন</small></div>
+                    <span class="reward-tag">+৩০ 🪙</span>
+                </div>
+            </div>
+            <div class="card" onclick="completeTask('share')" style="cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div><b>🔗 শেয়ার করুন</b><br><small style="color:var(--subtext);">বন্ধুকে রেফার করুন</small></div>
+                    <span class="reward-tag">+৫০ 🪙</span>
+                </div>
+            </div>
+            <div class="card" onclick="completeTask('video')" style="cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div><b>📺 ভিডিও দেখুন</b><br><small style="color:var(--subtext);">৩০ সেকেন্ডের বিজ্ঞাপন</small></div>
+                    <span class="reward-tag">+১৫ 🪙</span>
+                </div>
+            </div>
+            <!-- Rewarded Ad -->
+            <div class="ad-container" onclick="showRewardedAd()" style="cursor:pointer;">
+                <span class="ad-badge">🎬 Rewarded Ad</span>
+                <ins class="adsbygoogle"
+                     style="display:block; width:100%; height:100px;"
+                     data-ad-client="ca-pub-4843952439844383"
+                     data-ad-slot="5545377239"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </div>
+
+        <!-- SURVEY -->
+        <div class="screen" id="screen-survey">
+            <div class="section-title">📋 সার্ভে</div>
+            <div id="survey-container" class="card">
+                <p id="survey-q"></p>
+                <div id="survey-opts"></div>
+            </div>
+            <button class="btn btn-primary" id="survey-next" style="display:none;" onclick="nextSurvey()">পরবর্তী প্রশ্ন ▶</button>
+            <p style="text-align:center;font-size:12px;color:var(--subtext);margin-top:6px;">সব প্রশ্নের উত্তর দিন, শেষে +২৫ পয়েন্ট!</p>
+        </div>
+
+        <!-- QUIZ -->
+        <div class="screen" id="screen-quiz">
+            <div class="section-title">🧠 কুইজ</div>
+            <div id="quiz-container" class="card">
+                <p id="quiz-q"></p>
+                <div id="quiz-opts"></div>
+            </div>
+            <button class="btn btn-primary" id="quiz-next" style="display:none;" onclick="nextQuiz()">পরবর্তী প্রশ্ন ▶</button>
+            <p style="text-align:center;font-size:12px;color:var(--subtext);">সঠিক উত্তরে +২০ পয়েন্ট!</p>
+        </div>
+
+        <!-- MATH SOLVER -->
+        <div class="screen" id="screen-math">
+            <div class="section-title">🔢 ম্যাথ সলভার</div>
+            <div class="card">
+                <p style="font-size:12px;color:var(--subtext);">গাণিতিক এক্সপ্রেশন লিখুন</p>
+                <input class="input" id="math-input" placeholder="যেমন: (25*4)+sqrt(144)-10">
+                <button class="btn btn-primary" onclick="solveMath()">সমাধান করুন</button>
+                <p id="math-result" style="margin-top:10px;font-weight:700;font-size:18px;text-align:center;"></p>
+            </div>
+        </div>
+
+        <!-- MINI GAME -->
+        <div class="screen" id="screen-game">
+            <div class="section-title">🎮 মিনি গেম</div>
+            <div class="card">
+                <p style="text-align:center;font-weight:700;">🐍 স্নেক গেম</p>
+                <p style="text-align:center;font-size:11px;color:var(--subtext);">স্কোর: <span id="snake-score">0</span> | স্কোর ১০+ হলে +৩০ পয়েন্ট!</p>
+                <div class="game-area" id="snake-area" style="width:100%;height:280px;background:#000;position:relative;overflow:hidden;border-radius:10px;margin:8px 0;"></div>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+                    <button class="btn btn-sm btn-primary" onclick="startSnakeGame()">▶ নতুন গেম</button>
+                    <button class="btn btn-sm btn-outline" onclick="snakeDirection('up')">⬆️</button>
+                    <button class="btn btn-sm btn-outline" onclick="snakeDirection('down')">⬇️</button>
+                    <button class="btn btn-sm btn-outline" onclick="snakeDirection('left')">⬅️</button>
+                    <button class="btn btn-sm btn-outline" onclick="snakeDirection('right')">➡️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOOLS -->
+        <div class="screen" id="screen-tools">
+            <div class="section-title">🧰 টুলস</div>
+            <div class="grid-3">
+                <div class="feat-card" onclick="openTool('bmi')"><div class="icon">⚖️</div><div class="title">BMI</div></div>
+                <div class="feat-card" onclick="openTool('age')"><div class="icon">🎂</div><div class="title">বয়স</div></div>
+                <div class="feat-card" onclick="openTool('pass')"><div class="icon">🔑</div><div class="title">পাসওয়ার্ড</div></div>
+                <div class="feat-card" onclick="openTool('random')"><div class="icon">🎲</div><div class="title">র‍্যান্ডম</div></div>
+                <div class="feat-card" onclick="openTool('note')"><div class="icon">📝</div><div class="title">নোট</div></div>
+                <div class="feat-card" onclick="openTool('calc')"><div class="icon">🔢</div><div class="title">ক্যালক</div></div>
+            </div>
+        </div>
+
+        <!-- WITHDRAW -->
+        <div class="screen" id="screen-withdraw">
+            <div class="section-title">💳 টাকা উত্তোলন</div>
+            <div class="card">
+                <p style="text-align:center;font-size:22px;font-weight:700;">🪙 <span id="w-bal">0</span> Pts</p>
+                <p style="text-align:center;font-size:11px;color:var(--subtext);">ন্যূনতম: ৫০০ পয়েন্ট</p>
+                <label style="font-size:12px;font-weight:600;">পেমেন্ট মেথড</label>
+                <select class="input" id="w-method">
+                    <option value="bkash">📱 বিকাশ (bKash)</option>
+                    <option value="nagad">📱 নগদ (Nagad)</option>
+                    <option value="bank">🏦 ব্যাংক ট্রান্সফার</option>
+                </select>
+                <input class="input" id="w-number" placeholder="মোবাইল নম্বর / ব্যাংক অ্যাকাউন্ট নম্বর" type="text">
+                <input class="input" id="w-amount" placeholder="পয়েন্ট (ন্যূনতম ৫০০)" type="number" min="500">
+                <button class="btn btn-gold" onclick="handleWithdraw()">উইথড্র রিকোয়েস্ট পাঠান</button>
+            </div>
+        </div>
+
+        <!-- PROFILE -->
+        <div class="screen" id="screen-profile">
+            <div class="card" style="text-align:center;">
+                <div class="avatar-circle" id="p-avatar">U</div>
+                <h3 id="p-name">User</h3>
+                <p style="color:var(--subtext);font-size:11px;" id="p-email">-</p>
+                <p style="font-weight:700;font-size:20px;">🪙 <span id="p-coins">0</span> Pts</p>
+            </div>
+            <div class="card" onclick="navigateTo('history')" style="cursor:pointer;">📜 লেনদেন ইতিহাস →</div>
+            <div class="card" onclick="navigateTo('settings')" style="cursor:pointer;">⚙️ সেটিংস →</div>
+            <button class="btn btn-danger" style="margin-top:8px;" onclick="handleLogout()">🚪 লগআউট</button>
+        </div>
+
+        <!-- SETTINGS -->
+        <div class="screen" id="screen-settings">
+            <div class="section-title">⚙️ সেটিংস</div>
+            <div class="card"><p><b>🌓 থিম:</b> ডার্ক (ডিফল্ট)</p></div>
+            <div class="card" onclick="resetData()" style="cursor:pointer;color:var(--red);">🗑️ সব ডাটা রিসেট</div>
+            <div class="card"><p style="font-size:11px;color:var(--subtext);">📢 Ad Unit ID: ca-pub-4843952439844383/5545377239</p></div>
+        </div>
+
+        <!-- HISTORY -->
+        <div class="screen" id="screen-history">
+            <div class="section-title">📜 লেনদেন ইতিহাস</div>
+            <div id="history-list"></div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV (Profile included) -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <div class="nav-item active" data-screen="home" onclick="navigateTo('home')"><span class="nav-icon">🏠</span>হোম</div>
+        <div class="nav-item" data-screen="tasks" onclick="navigateTo('tasks')"><span class="nav-icon">✅</span>টাস্ক</div>
+        <div class="nav-item" data-screen="survey" onclick="navigateTo('survey')"><span class="nav-icon">📋</span>সার্ভে</div>
+        <div class="nav-item" data-screen="quiz" onclick="navigateTo('quiz')"><span class="nav-icon">🧠</span>কুইজ</div>
+        <div class="nav-item" data-screen="game" onclick="navigateTo('game')"><span class="nav-icon">🎮</span>গেম</div>
+        <div class="nav-item" data-screen="profile" onclick="navigateTo('profile')"><span class="nav-icon">👤</span>প্রোফাইল</div>
+    </nav>
+
+    <script>
+        // ============ GLOBAL STATE ============
+        const APP_KEY = 'bd_smart_hub_pro_v3';
+        let appData = { users: {}, currentUser: null };
+        let surveyIdx = 0,
+            quizIdx = 0,
+            surveyAnswered = 0,
+            quizCorrect = 0;
+        let snakeInterval = null,
+            snakeDir = 'right',
+            snakeBody = [],
+            snakeFood = {},
+            snakeScore = 0,
+            snakeGameActive = false;
+        const SNAKE_SIZE = 14,
+            SNAKE_AREA_W = 340,
+            SNAKE_AREA_H = 270;
+
+        const surveys = [
+            { q: 'আপনি কোন ধরনের কন্টেন্ট বেশি পছন্দ করেন?', opts: ['টেকনোলজি', 'খেলাধুলা', 'বিনোদন', 'শিক্ষা'] },
+            { q: 'আপনি দিনে কত ঘন্টা ইন্টারনেট ব্যবহার করেন?', opts: ['১-২ ঘন্টা', '৩-৫ ঘন্টা', '৫+ ঘন্টা', 'প্রয়োজন মতো'] },
+            { q: 'আপনার প্রিয় সোশ্যাল মিডিয়া প্ল্যাটফর্ম কোনটি?', opts: ['ফেসবুক', 'ইউটিউব', 'টিকটক', 'ইনস্টাগ্রাম'] },
+            { q: 'আপনি কি অনলাইন শপিং করেন?', opts: ['হ্যাঁ, নিয়মিত', 'মাঝে মাঝে', 'খুব কম', 'না'] },
+            { q: 'আমাদের অ্যাপকে কত রেটিং দিবেন?', opts: ['⭐৫', '⭐৪', '⭐৩', '⭐২/১'] },
+        ];
+        const quizzes = [
+            { q: 'বাংলাদেশের রাজধানী কোনটি?', opts: ['ঢাকা', 'চট্টগ্রাম', 'খুলনা', 'রাজশাহী'], ans: 0 },
+            { q: '২+২×২ = কত?', opts: ['৬', '৮', '৪', '১০'], ans: 0 },
+            { q: 'পৃথিবীর নিকটতম গ্রহ কোনটি?', opts: ['শুক্র', 'মঙ্গল', 'বুধ', 'বৃহস্পতি'], ans: 2 },
+            { q: '"পদ্মা" কোন ধরনের নদী?', opts: ['পাহাড়ি', 'সমতলীয়', 'মোহনা', 'উপনদী'], ans: 1 },
+            { q: 'CSS-এর পূর্ণরূপ কী?', opts: ['Cascading Style Sheets', 'Computer Style System', 'Creative Style Script', 'Color Style Setup'],
+                ans: 0 },
+        ];
+
+        function loadData() { const r = localStorage.getItem(APP_KEY); if (r) try { appData = JSON.parse(r); if (!appData
+                .users) appData.users = {}; } catch (e) { appData = { users: {}, currentUser: null }; } }
+
+        function saveData() { localStorage.setItem(APP_KEY, JSON.stringify(appData)); }
+
+        function getUser() { return appData.currentUser && appData.users[appData.currentUser] ? appData.users[appData
+                .currentUser] : null; }
+
+        function updateUser(upd) { if (!appData.currentUser) return; const u = appData.users[appData.currentUser]; if (!u)
+                return; Object.assign(u, upd); saveData(); refreshUI(); }
+
+        function addCoins(amt, desc) {
+            const u = getUser();
+            if (!u) return;
+            u.coins = (u.coins || 0) + amt;
+            u.tasksCompleted = (u.tasksCompleted || 0) + 1;
+            u.transactions = u.transactions || [];
+            u.transactions.push({ desc, amount: amt, time: Date.now() });
+            saveData();
+            refreshUI();
+            showToast('🪙', `+${amt} পয়েন্ট! ${desc}`, 'success');
+        }
+
+        function refreshUI() {
+            const u = getUser();
+            const c = u ? u.coins : 0;
+            const t = u ? (u.tasksCompleted || 0) : 0;
+            const s = u ? (u.streak || 0) : 0;
+            const n = u ? u.name : 'User';
+            const e = u ? appData.currentUser : '';
+            document.getElementById('global-coins').innerText = c;
+            document.getElementById('s-coins').innerText = c;
+            document.getElementById('s-tasks').innerText = t;
+            document.getElementById('s-streak').innerText = s + '🔥';
+            document.getElementById('uname').innerText = n;
+            document.getElementById('p-name').innerText = n;
+            document.getElementById('p-email').innerText = e;
+            document.getElementById('p-coins').innerText = c;
+            document.getElementById('p-avatar').innerText = n.charAt(0).toUpperCase();
+            document.getElementById('w-bal').innerText = c;
+            if (document.getElementById('screen-history').classList.contains('active')) updateHistory();
+        }
+
+        function updateHistory() {
+            const u = getUser();
+            const container = document.getElementById('history-list');
+            if (!u || !u.transactions || u.transactions.length === 0) { container.innerHTML =
+                    '<p style="color:var(--subtext);">কোনো লেনদেন নেই</p>'; return; }
+            container.innerHTML = [...u.transactions].reverse().map(tx =>
+                `<div class="card" style="padding:10px;margin-bottom:6px;"><div style="display:flex;justify-content:space-between;"><span>${tx.desc}</span><span style="color:${tx.amount>=0?'var(--green)':'var(--red)'};font-weight:700;">${tx.amount>=0?'+':''}${tx.amount}🪙</span></div><small style="color:var(--subtext);">${new Date(tx.time).toLocaleString('bn-BD')}</small></div>`
+            ).join('');
+        }
+
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            const el = document.getElementById(id);
+            if (el) el.classList.add('active');
+        }
+
+        function navigateTo(page) {
+            const u = getUser();
+            if (!u && page !== 'login') { showScreen('screen-login'); return; }
+            const map = {
+                'home': 'screen-home',
+                'tasks': 'screen-tasks',
+                'survey': 'screen-survey',
+                'quiz': 'screen-quiz',
+                'math': 'screen-math',
+                'game': 'screen-game',
+                'tools': 'screen-tools',
+                'withdraw': 'screen-withdraw',
+                'profile': 'screen-profile',
+                'settings': 'screen-settings',
+                'history': 'screen-history'
+            };
+            showScreen(map[page] || 'screen-home');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            const nav = document.querySelector(`.nav-item[data-screen="${page}"]`);
+            if (nav) nav.classList.add('active');
+            if (page === 'survey') startSurvey();
+            if (page === 'quiz') startQuiz();
+            if (page === 'history') updateHistory();
+            refreshUI();
+        }
+
+        // ============ AUTH ============
+        function handleRegister() {
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim().toLowerCase();
+            const pass = document.getElementById('reg-pass').value.trim();
+            if (!name || !email || !pass) return showToast('⚠️', 'সব ফিল্ড পূরণ করুন', 'error');
+            if (pass.length < 4) return showToast('⚠️', 'পাসওয়ার্ড ৪+ ক্যারেক্টার', 'error');
+            if (appData.users[email]) return showToast('❌', 'ইমেইল রেজিস্টার্ড', 'error');
+            appData.users[email] = { name, password: pass, coins: 100, tasksCompleted: 0, streak: 0, lastDailyBonus: null,
+                transactions: [{ desc: '🎁 রেজিস্ট্রেশন বোনাস', amount: 100, time: Date.now() }] };
+            appData.currentUser = email;
+            saveData();
+            document.getElementById('reg-name').value = '';
+            document.getElementById('reg-email').value = '';
+            document.getElementById('reg-pass').value = '';
+            showScreen('screen-home');
+            navigateTo('home');
+            showToast('✅', 'রেজিস্ট্রেশন সফল! +১০০ পয়েন্ট', 'success');
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('login-email').value.trim().toLowerCase();
+            const pass = document.getElementById('login-pass').value.trim();
+            if (!email || !pass) return showToast('⚠️', 'ইমেইল ও পাসওয়ার্ড দিন', 'error');
+            const u = appData.users[email];
+            if (!u || u.password !== pass) return showToast('❌', 'ভুল ইমেইল বা পাসওয়ার্ড', 'error');
+            appData.currentUser = email;
+            saveData();
+            document.getElementById('login-email').value = '';
+            document.getElementById('login-pass').value = '';
+            showScreen('screen-home');
+            navigateTo('home');
+            showToast('👋', `স্বাগতম, ${u.name}!`, 'success');
+        }
+
+        function handleLogout() {
+            appData.currentUser = null;
+            saveData();
+            showScreen('screen-login');
+            showToast('👋', 'লগআউট হয়েছে');
+        }
+
+        function resetData() {
+            if (confirm('সব ডাটা রিসেট করবেন?')) { localStorage.removeItem(APP_KEY);
+                appData = { users: {}, currentUser: null };
+                saveData();
+                showScreen('screen-login');
+                showToast('🗑️', 'ডাটা রিসেট হয়েছে'); }
+        }
+
+        // ============ DAILY BONUS ============
+        function handleDailyBonus() {
+            const u = getUser();
+            if (!u) return;
+            const now = Date.now();
+            const last = u.lastDailyBonus || 0;
+            if (now - last < 86400000) { const rem = last + 86400000 - now; const h = Math.floor(rem / 3600000); const m = Math
+                    .floor((rem % 3600000) / 60000); return showToast('⏳', `${h}ঘ. ${m}মি. পর`, 'error'); }
+            u.coins = (u.coins || 0) + 50;
+            u.streak = (u.streak || 0) + 1;
+            u.lastDailyBonus = now;
+            u.transactions = u.transactions || [];
+            u.transactions.push({ desc: '🎁 ডেইলি বোনাস', amount: 50, time: now });
+            saveData();
+            refreshUI();
+            showToast('🎉', '+৫০ পয়েন্ট! স্ট্রিক: ' + u.streak + '🔥', 'success');
+        }
+
+        // ============ TASKS ============
+        function completeTask(type) {
+            const u = getUser();
+            if (!u) return;
+            const rewards = { app_review: 30, share: 50, video: 15 };
+            const descs = { app_review: '📱 অ্যাপ রিভিউ', share: '🔗 শেয়ার', video: '📺 ভিডিও' };
+            addCoins(rewards[type] || 20, descs[type] || 'টাস্ক');
+        }
+
+        // ============ REWARDED AD ============
+        function showRewardedAd() {
+            const u = getUser();
+            if (!u) return showToast('⚠️', 'লগইন করুন', 'error');
+            showToast('🎬', 'রিওয়ার্ডেড অ্যাড লোড হচ্ছে...', 'success');
+            setTimeout(() => {
+                addCoins(25, '🎬 Rewarded Ad দেখেছেন');
+                showToast('✅', '+২৫ পয়েন্ট অর্জিত!', 'success');
+            }, 1500);
+        }
+
+        // ============ SURVEY ============
+        function startSurvey() { surveyIdx = 0;
+            surveyAnswered = 0;
+            renderSurvey(); }
+
+        function renderSurvey() {
+            if (surveyIdx >= surveys.length) {
+                document.getElementById('survey-q').innerText = '✅ সার্ভে সম্পন্ন!';
+                document.getElementById('survey-opts').innerHTML = '';
+                document.getElementById('survey-next').style.display = 'none';
+                if (surveyAnswered >= surveys.length) { addCoins(25, '📋 সার্ভে সম্পন্ন');
+                    surveyAnswered = 0; }
+                return;
+            }
+            const s = surveys[surveyIdx];
+            document.getElementById('survey-q').innerText = `প্রশ্ন ${surveyIdx+1}/${surveys.length}: ${s.q}`;
+            document.getElementById('survey-opts').innerHTML = s.opts.map((o, i) =>
+                `<div class="quiz-option" onclick="answerSurvey(${i})">${o}</div>`).join('');
+            document.getElementById('survey-next').style.display = 'none';
+        }
+
+        function answerSurvey(i) {
+            surveyAnswered++;
+            surveyIdx++;
+            document.getElementById('survey-next').style.display = 'block';
+            document.getElementById('survey-opts').innerHTML =
+                '<p style="color:var(--green);">উত্তর রেকর্ড হয়েছে! ✅</p>';
+        }
+
+        function nextSurvey() { renderSurvey(); }
+
+        // ============ QUIZ ============
+        function startQuiz() { quizIdx = 0;
+            quizCorrect = 0;
+            renderQuiz(); }
+
+        function renderQuiz() {
+            if (quizIdx >= quizzes.length) {
+                document.getElementById('quiz-q').innerText = `✅ কুইজ শেষ! সঠিক: ${quizCorrect}/${quizzes.length}`;
+                document.getElementById('quiz-opts').innerHTML = '';
+                document.getElementById('quiz-next').style.display = 'none';
+                if (quizCorrect >= 3) addCoins(20, '🧠 কুইজ বোনাস');
+                return;
+            }
+            const q = quizzes[quizIdx];
+            document.getElementById('quiz-q').innerText = `প্রশ্ন ${quizIdx+1}: ${q.q}`;
+            document.getElementById('quiz-opts').innerHTML = q.opts.map((o, i) =>
+                `<div class="quiz-option" id="qopt-${i}" onclick="answerQuiz(${i},${q.ans})">${o}</div>`).join('');
+            document.getElementById('quiz-next').style.display = 'none';
+        }
+
+        function answerQuiz(selected, correct) {
+            document.querySelectorAll('#quiz-opts .quiz-option').forEach(el => el.style.pointerEvents = 'none');
+            if (selected === correct) {
+                document.getElementById('qopt-' + selected).classList.add('correct');
+                quizCorrect++;
+                showToast('✅', 'সঠিক উত্তর!', 'success');
+            } else {
+                document.getElementById('qopt-' + selected).classList.add('wrong');
+                document.getElementById('qopt-' + correct).classList.add('correct');
+                showToast('❌', 'ভুল উত্তর', 'error');
+            }
+            quizIdx++;
+            document.getElementById('quiz-next').style.display = 'block';
+        }
+
+        function nextQuiz() { renderQuiz(); }
+
+        // ============ MATH SOLVER ============
+        function solveMath() {
+            const expr = document.getElementById('math-input').value.trim();
+            if (!expr) return;
+            try {
+                const sanitized = expr.replace(/sqrt/g, 'Math.sqrt').replace(/pow/g, 'Math.pow').replace(/sin/g, 'Math.sin')
+                    .replace(/cos/g, 'Math.cos').replace(/abs/g, 'Math.abs').replace(/log/g, 'Math.log').replace(/PI/g,
+                        'Math.PI').replace(/E/g, 'Math.E');
+                const result = eval(sanitized);
+                document.getElementById('math-result').innerText = '= ' + result;
+                document.getElementById('math-result').style.color = 'var(--green)';
+            } catch (e) {
+                document.getElementById('math-result').innerText = 'ত্রুটি! সঠিক এক্সপ্রেশন লিখুন';
+                document.getElementById('math-result').style.color = 'var(--red)';
+            }
+        }
+
+        // ============ MINI GAME (SNAKE) ============
+        function startSnakeGame() {
+            if (snakeInterval) clearInterval(snakeInterval);
+            snakeDir = 'right';
+            snakeBody = [{ x: 100, y: 140 }, { x: 86, y: 140 }, { x: 72, y: 140 }];
+            snakeScore = 0;
+            snakeGameActive = true;
+            document.getElementById('snake-score').innerText = '0';
+            spawnSnakeFood();
+            renderSnake();
+            snakeInterval = setInterval(moveSnake, 120);
+        }
+
+        function spawnSnakeFood() {
+            const cols = Math.floor(SNAKE_AREA_W / SNAKE_SIZE);
+            const rows = Math.floor(SNAKE_AREA_H / SNAKE_SIZE);
+            snakeFood = { x: Math.floor(Math.random() * cols) * SNAKE_SIZE, y: Math.floor(Math.random() * rows) * SNAKE_SIZE };
+        }
+
+        function renderSnake() {
+            const area = document.getElementById('snake-area');
+            area.style.width = SNAKE_AREA_W + 'px';
+            area.style.height = SNAKE_AREA_H + 'px';
+            area.innerHTML = '';
+            snakeBody.forEach(seg => {
+                const div = document.createElement('div');
+                div.style.cssText =
+                    `position:absolute;left:${seg.x}px;top:${seg.y}px;width:${SNAKE_SIZE-2}px;height:${SNAKE_SIZE-2}px;background:#2ecc71;border-radius:3px;`;
+                area.appendChild(div);
+            });
+            const food = document.createElement('div');
+            food.style.cssText =
+                `position:absolute;left:${snakeFood.x}px;top:${snakeFood.y}px;width:${SNAKE_SIZE-2}px;height:${SNAKE_SIZE-2}px;background:#e74c3c;border-radius:50%;`;
+            area.appendChild(food);
+        }
+
+        function moveSnake() {
+            if (!snakeGameActive) return;
+            const head = { ...snakeBody[0] };
+            if (snakeDir === 'right') head.x += SNAKE_SIZE;
+            if (snakeDir === 'left') head.x -= SNAKE_SIZE;
+            if (snakeDir === 'up') head.y -= SNAKE_SIZE;
+            if (snakeDir === 'down') head.y += SNAKE_SIZE;
+            if (head.x < 0 || head.x >= SNAKE_AREA_W || head.y < 0 || head.y >= SNAKE_AREA_H) return endSnakeGame();
+            if (snakeBody.some(s => s.x === head.x && s.y === head.y)) return endSnakeGame();
+            snakeBody.unshift(head);
+            if (head.x === snakeFood.x && head.y === snakeFood.y) {
+                snakeScore++;
+                document.getElementById('snake-score').innerText = snakeScore;
+                spawnSnakeFood();
+                if (snakeScore >= 10 && snakeGameActive) { addCoins(30, '🎮 স্নেক গেম ১০+ স্কোর');
+                    snakeGameActive = false;
+                    clearInterval(snakeInterval);
+                    showToast('🏆', 'অভিনন্দন! +৩০ পয়েন্ট!', 'success'); }
+            } else { snakeBody.pop(); }
+            renderSnake();
+        }
+
+        function endSnakeGame() { snakeGameActive = false;
+            clearInterval(snakeInterval);
+            showToast('💀', 'গেম ওভার! স্কোর: ' + snakeScore, 'error'); }
+
+        function snakeDirection(dir) {
+            if (!snakeGameActive) return;
+            const opp = { up: 'down', down: 'up', left: 'right', right: 'left' };
+            if (dir !== opp[snakeDir]) snakeDir = dir;
+        }
+        document.addEventListener('keydown', e => {
+            const map = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right' };
+            if (map[e.key]) { e.preventDefault();
+                snakeDirection(map[e.key]); }
+        });
+
+        // ============ TOOLS ============
+        function openTool(t) {
+            const u = getUser();
+            if (!u) return showToast('⚠️', 'লগইন করুন', 'error');
+            if (t === 'bmi') { const w = parseFloat(prompt('ওজন (কেজি):'));
+                const h = parseFloat(prompt('উচ্চতা (মিটার):')); if (!isNaN(w) && !isNaN(h) && h > 0) showToast('⚖️', 'BMI: ' + (
+                    w / (h * h)).toFixed(1), 'success'); }
+            if (t === 'age') { const y = parseInt(prompt('জন্ম সাল:'));
+                const age = new Date().getFullYear() - y; if (!isNaN(age) && age > 0) showToast('🎂', 'বয়স: ~' + age + ' বছর',
+                    'success'); }
+            if (t === 'pass') { const p = Array.from({ length: 12 }, () => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#'
+                    .charAt(Math.floor(Math.random() * 68))).join('');
+                navigator.clipboard?.writeText(p);
+                showToast('🔑', 'পাসওয়ার্ড: ' + p, 'success'); }
+            if (t === 'random') { const mn = parseInt(prompt('সর্বনিম্ন:') || '1');
+                const mx = parseInt(prompt('সর্বোচ্চ:') || '100');
+                showToast('🎲', 'র‍্যান্ডম: ' + Math.floor(Math.random() * (mx - mn + 1) + mn), 'success'); }
+            if (t === 'note') { const n = prompt('নোট:', localStorage.getItem('note') || ''); if (n !== null) { localStorage
+                        .setItem('note', n);
+                    showToast('📝', 'সেভ হয়েছে', 'success'); } }
+            if (t === 'calc') { const ex = prompt('এক্সপ্রেশন:'); try { showToast('🔢', '= ' + eval(ex), 'success'); } catch (
+                e) { showToast('⚠️', 'ত্রুটি', 'error'); } }
+        }
+
+        // ============ WITHDRAW ============
+        function handleWithdraw() {
+            const u = getUser();
+            if (!u) return;
+            const method = document.getElementById('w-method').value;
+            const number = document.getElementById('w-number').value.trim();
+            const amt = parseInt(document.getElementById('w-amount').value);
+            if (!number) return showToast('⚠️', 'অ্যাকাউন্ট নম্বর দিন', 'error');
+            if (!amt || amt < 500) return showToast('⚠️', 'ন্যূনতম ৫০০ পয়েন্ট', 'error');
+            if (amt > (u.coins || 0)) return showToast('❌', 'পর্যাপ্ত পয়েন্ট নেই', 'error');
+            const methodLabels = { bkash: 'বিকাশ', nagad: 'নগদ', bank: 'ব্যাংক' };
+            u.coins -= amt;
+            u.transactions = u.transactions || [];
+            u.transactions.push({ desc: `💳 উইথড্র (${methodLabels[method]}) - ${number.slice(-4)}`, amount: -amt, time: Date
+                    .now() });
+            saveData();
+            refreshUI();
+            document.getElementById('w-amount').value = '';
+            document.getElementById('w-number').value = '';
+            showToast('✅', `উইথড্র সফল! -${amt}🪙 ${methodLabels[method]}`, 'success');
+        }
+
+        // ============ TOAST ============
+        function showToast(icon, msg, type = '') {
+            const c = document.getElementById('toast-container');
+            const t = document.createElement('div');
+            t.className = 'toast ' + type;
+            t.innerText = icon + ' ' + msg;
+            c.appendChild(t);
+            setTimeout(() => t.remove(), 2500);
+        }
+
+        // ============ INIT ============
+        function init() {
+            loadData();
+            if (appData.currentUser && appData.users[appData.currentUser]) { showScreen('screen-home');
+                navigateTo('home'); } else { showScreen('screen-login'); }
+            refreshUI();
+        }
+        init();
+        console.log('🚀 BD Smart Hub Pro ready | Ad Unit: ca-pub-4843952439844383/5545377239');
+    </script>
+</body>
+</html>
